@@ -180,7 +180,8 @@ const photoboothPreview = (function () {
                 } else if (config.preview.mode === PreviewMode.URL.valueOf()) {
                     photoboothTools.console.logDev('Preview: Preview at countdown from URL.');
                     setTimeout(function () {
-                        url.attr('src', addCacheBustingParam(getRootProperty('--background-preview')));
+                        const cacheBustedUrl = addCacheBustingParam(getRootProperty('--background-preview'));
+                        url.css('background-image', `url("${cacheBustedUrl}")`);
                         url.show();
                     }, config.preview.url_delay);
                 }
@@ -192,7 +193,8 @@ const photoboothPreview = (function () {
                 } else if (config.preview.mode === PreviewMode.URL.valueOf()) {
                     photoboothTools.console.logDev('Preview: Preview from URL.');
                     setTimeout(function () {
-                        url.attr('src', addCacheBustingParam(getRootProperty('--background-preview')));
+                        const cacheBustedUrl = addCacheBustingParam(getRootProperty('--background-preview'));
+                        url.css('background-image', `url("${cacheBustedUrl}")`);
                         url.show();
                     }, config.preview.url_delay);
                 }
@@ -219,7 +221,7 @@ const photoboothPreview = (function () {
             api.stream = null;
         }
         url.hide();
-        url.attr('src', '');
+        url.css('background-image', '');
         video.hide();
         pictureFrame.hide();
         collageFrame.hide();
